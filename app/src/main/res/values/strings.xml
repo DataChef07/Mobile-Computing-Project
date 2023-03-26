@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StartUpConnect</string>
+    <string name="splashscreenimage">SplashScreenImage</string>
+    <string name="fcm_message"> New Notification </string>
+    <string name="default_notification_channel_id">fcm_default_channel</string>
+    <string name="default_notification_channel_name">default</string>
+</resources>

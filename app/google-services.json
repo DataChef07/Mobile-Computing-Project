@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "474178232933",
+    "firebase_url": "https://android1-6a442-default-rtdb.firebaseio.com",
+    "project_id": "android1-6a442",
+    "storage_bucket": "android1-6a442.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474178232933:android:24c325d267f75fccf35c8c",
+        "android_client_info": {
+          "package_name": "com.example.startupconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474178232933-ep9g30et0kduk1fpafp08m3824b2ktdv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuJMliY5Tm8u5mVopwbZhN7ScT0KKZ1yM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474178232933-ep9g30et0kduk1fpafp08m3824b2ktdv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

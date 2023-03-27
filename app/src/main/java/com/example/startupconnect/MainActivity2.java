@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,9 +24,11 @@ public class MainActivity2 extends AppCompatActivity {
 
     private Button logout, refreshQR;
     private ImageView QRimage;
+    private TextView t1;
     private Bitmap bitmap;
     private QRGEncoder qrgEncoder;
     private FirebaseAuth auth;
+    private String sport="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,10 @@ public class MainActivity2 extends AppCompatActivity {
         logout = findViewById(R.id.logout);
         refreshQR = findViewById(R.id.refreshQRbutton);
         QRimage = findViewById(R.id.QRimage);
+        t1=findViewById(R.id.textView);
 
+        sport=intent.getStringExtra("sport");
+        t1.setText(sport);
         setImage(userName);
 
         auth = FirebaseAuth.getInstance();

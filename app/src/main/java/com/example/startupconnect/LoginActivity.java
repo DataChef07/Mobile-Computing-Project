@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public static final String EXTRA_USERNAME="com.example.startupconnect.example.EXTRA_USERNAME";
 
+    static String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +60,8 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else{
                                 if(auth.getCurrentUser().isEmailVerified()){
-                                    String userName = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).toString();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity2.class);
+                                    userName = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).toString();
+                                    Intent intent = new Intent(LoginActivity.this, Recycle_loginandreg.class);
                                     intent.putExtra(EXTRA_USERNAME,userName);
                                     startActivity(intent);
                                     finish();
@@ -90,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null && user.isEmailVerified()) {
                     String userName = auth.getCurrentUser().toString();
-                    Intent intent = new Intent( LoginActivity.this, MainActivity2.class);//later we create
+                    Intent intent = new Intent( LoginActivity.this, Recycle_loginandreg.class);//later we create
                     intent.putExtra(EXTRA_USERNAME,userName);
                     startActivity(intent);
                     finish();
@@ -125,4 +126,8 @@ public class LoginActivity extends AppCompatActivity {
 //        super.onBackPressed();
 //        auth.signOut();
 //    }
+    static public String getData()
+    {
+        return userName;
+    }
 }

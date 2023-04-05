@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.SimpleDateFormat;
+
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
@@ -29,6 +31,8 @@ public class MainActivity2 extends AppCompatActivity {
     private QRGEncoder qrgEncoder;
     private FirebaseAuth auth;
     private String sport="";
+    private String QR_String="";
+    String userName ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +40,17 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         Intent intent = getIntent();
-        String userName = intent.getStringExtra(LoginActivity.EXTRA_USERNAME);
+        userName = intent.getStringExtra(LoginActivity.EXTRA_USERNAME);
+        sport = intent.getStringExtra(AdapterRecycleLogin.EXTRA_SPORT);
 
         logout = findViewById(R.id.logout);
         refreshQR = findViewById(R.id.refreshQRbutton);
         QRimage = findViewById(R.id.QRimage);
-        t1=findViewById(R.id.textView);
+//        t1=findViewById(R.id.textView);
 
-        sport=intent.getStringExtra("sport");
-        t1.setText(sport);
-        setImage(userName);
+//        sport=intent.getStringExtra("sport");
+//        t1.setText(sport);
+        setImage();
 
         auth = FirebaseAuth.getInstance();
         logout.setOnClickListener(new View.OnClickListener() {
@@ -82,12 +87,14 @@ public class MainActivity2 extends AppCompatActivity {
 //                catch (Exception e){
 //                    Log.d("QRCODE", e.toString());
 //                }
-                Toast.makeText(MainActivity2.this, "welcome:  " + userName, Toast.LENGTH_SHORT).show();
+                setImage();
+                Toast.makeText(MainActivity2.this, "welcome:  " + QR_String, Toast.LENGTH_SHORT).show();
+
             }
         });
     }
 
-    private void setImage(String userName) {
+    private void setImage() {
         WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         Point point = new Point();
@@ -99,8 +106,9 @@ public class MainActivity2 extends AppCompatActivity {
             dim = width;
 
         dim = dim * 3/4;
-
-        qrgEncoder = new QRGEncoder(userName, null, QRGContents.Type.TEXT, dim);
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm").format(new java.util.Date());
+        QR_String = userName + "/////"+ sport +"/////"+ timeStamp;
+        qrgEncoder = new QRGEncoder(QR_String, null, QRGContents.Type.TEXT, dim);
         try{
             bitmap = qrgEncoder.getBitmap();
             QRimage.setImageBitmap(bitmap);

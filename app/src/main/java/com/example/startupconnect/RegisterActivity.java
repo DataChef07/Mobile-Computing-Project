@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -93,7 +94,8 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean matched = false;
                 boolean signedin = false;
                 int rating = 0;
-                String complaints = "";
+                ArrayList<String> complaints=new ArrayList<String>();
+                complaints.add("dummy");
 
 
                 if(dataCheck(Email, Password, Name, Phno, Checkbox)){

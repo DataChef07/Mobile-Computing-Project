@@ -17,6 +17,7 @@ public class AdapterRecycleLogin extends RecyclerView.Adapter<AdapterRecycleLogi
     Context context;
     ArrayList<ContentRecylelogin> arr;
     public static final String EXTRA_USERNAME="com.example.startupconnect.example.EXTRA_USERNAME";
+    public static final String EXTRA_SPORT="com.example.startupconnect.example.EXTRA_SPORT";
     public AdapterRecycleLogin(Context context, ArrayList<ContentRecylelogin> arr){
         this.context=context;
         this.arr=arr;
@@ -39,7 +40,7 @@ public class AdapterRecycleLogin extends RecyclerView.Adapter<AdapterRecycleLogi
             public void onClick(View v) {
                 Intent intent=new Intent(context,MainActivity2.class);
                 intent.putExtra(EXTRA_USERNAME,userName);
-                intent.putExtra("sport",sport);
+                intent.putExtra(EXTRA_SPORT,sport);
                 context.startActivity(intent);
             }
         });

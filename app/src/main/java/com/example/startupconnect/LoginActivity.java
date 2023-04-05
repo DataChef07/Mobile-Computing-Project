@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
 
     public static final String EXTRA_USERNAME="com.example.startupconnect.example.EXTRA_USERNAME";
+    public static final String EXTRA_SPORT="com.example.startupconnect.example.EXTRA_SPORT";
 
     static String userName;
 

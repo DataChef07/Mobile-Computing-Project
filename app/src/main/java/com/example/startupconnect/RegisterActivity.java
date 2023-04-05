@@ -88,7 +88,13 @@ public class RegisterActivity extends AppCompatActivity {
                 final String Password = password.getText().toString();
                 final String Name = name.getText().toString();
                 final String Phno = phno.getText().toString();
-                final boolean Checkbox = checkBox.isChecked();
+                boolean Checkbox = checkBox.isChecked();
+                boolean intrested = false;
+                boolean matched = false;
+                boolean signedin = false;
+                int rating = 0;
+                String complaints = "";
+
 
                 if(dataCheck(Email, Password, Name, Phno, Checkbox)){
                     auth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
@@ -108,7 +114,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                                             Map userDetails = new HashMap<>();
                                             userDetails.put("name", Name);
+                                            userDetails.put("Phno", Phno);
                                             userDetails.put("profileImageUrl", "default");
+                                            userDetails.put("intrested", intrested);
+                                            userDetails.put("matched", matched);
+                                            userDetails.put("signedin", signedin);
+                                            userDetails.put("rating", rating);
+                                            userDetails.put("complaints", complaints);
+
                                             curruser.updateChildren(userDetails);
                                             email.setText("");
                                             name.setText("");

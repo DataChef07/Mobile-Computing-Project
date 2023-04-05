@@ -16,6 +16,9 @@
         android:theme="@style/Theme.StartUpConnect"
         tools:targetApi="31">
         <activity
+            android:name=".ComplaintActivity"
+            android:exported="false" />
+        <activity
             android:name=".Recycle_loginandreg"
             android:exported="false" />
         <activity

@@ -41,4 +41,9 @@ public class rules extends AppCompatActivity {
         webView.loadUrl(sport_url.get(sport));
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

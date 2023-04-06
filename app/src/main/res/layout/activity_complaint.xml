@@ -6,4 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".ComplaintActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="25dp"
+            android:paddingTop="50dp"
+            android:paddingRight="25dp">
+
+
+            <TextView
+                android:id="@+id/Complaint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Complaint Details"
+                android:textColor="#9C27B0"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/Categorytext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Category"
+                android:textColor="#9C27B0"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="Select"
+                android:padding="30dp"
+                android:paddingStart="70dp"
+                android:paddingLeft="70dp"
+                android:paddingEnd="20dp"
+                android:paddingRight="20dp"
+                android:spinnerMode="dialog" />
+
+            <TextView
+                android:id="@+id/SubCategorytext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sub-Category"
+                android:textColor="#9C27B0"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/subcatspinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="Select"
+                android:padding="30dp"
+                android:paddingStart="70dp"
+                android:paddingLeft="70dp"
+                android:paddingEnd="20dp"
+                android:paddingRight="20dp"
+                android:spinnerMode="dialog" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="25dp"
+                android:gravity="top"
+                android:scrollbars = "vertical">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/concren"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:hint="Describe your concern"
+                    android:padding="20dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:text="Submit"
+                android:textColor="#070407"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

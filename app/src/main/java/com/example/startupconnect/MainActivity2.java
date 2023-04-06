@@ -24,7 +24,7 @@ import androidmads.library.qrgenearator.QRGEncoder;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    private Button logout, refreshQR;
+    private Button logout, refreshQR, complaint, rules;
     private ImageView QRimage;
     private TextView t1;
     private Bitmap bitmap;
@@ -33,6 +33,7 @@ public class MainActivity2 extends AppCompatActivity {
     private String sport="";
     private String QR_String="";
     String userName ="";
+    public static final String EXTRA_SPORT="com.example.startupconnect.example.EXTRA_SPORT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,11 @@ public class MainActivity2 extends AppCompatActivity {
         logout = findViewById(R.id.logout);
         refreshQR = findViewById(R.id.refreshQRbutton);
         QRimage = findViewById(R.id.QRimage);
-//        t1=findViewById(R.id.textView);
+        complaint = findViewById(R.id.complaint);
+        rules = findViewById(R.id.rules);
+        t1=findViewById(R.id.textView);
 
-//        sport=intent.getStringExtra("sport");
-//        t1.setText(sport);
+        t1.setText(sport);
         setImage();
 
         auth = FirebaseAuth.getInstance();
@@ -67,29 +69,28 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-//                Display display = windowManager.getDefaultDisplay();
-//                Point point = new Point();
-//                display.getSize(point);
-//                int width = point.x;
-//                int height = point.y;
-//                int dim = height;
-//                if(width<height)
-//                    dim = width;
-//
-//                dim = dim * 3/4;
-//
-//                qrgEncoder = new QRGEncoder(userName, null, QRGContents.Type.TEXT, dim);
-//                try{
-//                    bitmap = qrgEncoder.getBitmap();
-//                    QRimage.setImageBitmap(bitmap);
-//                }
-//                catch (Exception e){
-//                    Log.d("QRCODE", e.toString());
-//                }
                 setImage();
                 Toast.makeText(MainActivity2.this, "welcome:  " + QR_String, Toast.LENGTH_SHORT).show();
 
+            }
+        });
+
+        complaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity2.this, ComplaintActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        rules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity2.this, rules.class);
+                intent.putExtra(EXTRA_SPORT,sport);
+                startActivity(intent);
+                finish();
             }
         });
     }

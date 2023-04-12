@@ -35,6 +35,7 @@ public class AdapterRecycleLogin extends RecyclerView.Adapter<AdapterRecycleLogi
         String userName=LoginActivity.getData();
         String sport=arr.get(position).s;
         holder.t1.setText(arr.get(position).s);
+        holder.t1.setBackgroundResource(arr.get(position).img);
         holder.t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

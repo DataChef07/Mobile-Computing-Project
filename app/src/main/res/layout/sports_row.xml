@@ -5,19 +5,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="180dp"
         android:layout_margin="6dp"
         android:elevation="12dp"
         app:cardBackgroundColor="#DCD8D8"
         app:cardCornerRadius="5dp">
+
         <TextView
             android:id="@+id/text1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text=""
             android:gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:text=""
+            android:textColor="#112FD1"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

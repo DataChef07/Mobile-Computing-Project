@@ -1,7 +1,5 @@
 package com.example.startupconnect;
 
-import static java.security.AccessController.getContext;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,16 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Adapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +32,9 @@ public class Recycle_loginandreg extends AppCompatActivity {
 
         DatabaseReference reference;
         reference= FirebaseDatabase.getInstance().getReference("sports");
+
+        String keys = FirebaseDatabase.getInstance().getReference("sports").getKey();
+        Log.i(TAG, "onCreate: keys" + keys);
         reference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -46,8 +43,13 @@ public class Recycle_loginandreg extends AppCompatActivity {
                     if(task.getResult().exists())
                     {
                         DataSnapshot datasnapshot=task.getResult();
+
+//                       firebase f=datasnapshot.getValue(firebase.class);
+                        String s=datasnapshot.getKey();
 //                        HashMap
-                        Log.i(TAG, "onComplete: ====>"+datasnapshot.getValue());
+                        Log.i(TAG, "onComplete: ====>"+datasnapshot.getValue().getClass().getName());
+//                        Log.i(TAG, "onComplete1: ====>"+f.key);
+//                        Log.i(TAG, "onComplete1: ====>"+value);
                     }
                     else
                     {

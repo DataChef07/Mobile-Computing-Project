@@ -32,9 +32,6 @@ public class Recycle_loginandreg extends AppCompatActivity {
 
         DatabaseReference reference;
         reference= FirebaseDatabase.getInstance().getReference("sports");
-
-        String keys = FirebaseDatabase.getInstance().getReference("sports").getKey();
-        Log.i(TAG, "onCreate: keys" + keys);
         reference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {

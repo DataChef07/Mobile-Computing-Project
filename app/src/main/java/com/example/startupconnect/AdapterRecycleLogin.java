@@ -32,7 +32,7 @@ public class AdapterRecycleLogin extends RecyclerView.Adapter<AdapterRecycleLogi
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        String userName=LoginActivity.getData();
+        String userEmail=LoginActivity.getData();
         String sport=arr.get(position).s;
         holder.t1.setText(arr.get(position).s);
         holder.t1.setBackgroundResource(arr.get(position).img);
@@ -40,7 +40,7 @@ public class AdapterRecycleLogin extends RecyclerView.Adapter<AdapterRecycleLogi
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context,MainActivity2.class);
-                intent.putExtra(EXTRA_USERNAME,userName);
+                intent.putExtra(EXTRA_USERNAME,userEmail);
                 intent.putExtra(EXTRA_SPORT,sport);
                 context.startActivity(intent);
             }

@@ -108,7 +108,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         dim = dim * 3/4;
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm").format(new java.util.Date());
-        QR_String = userName + "/////"+ sport +"/////"+ timeStamp;
+        QR_String = userName + "$"+ sport +"$"+ timeStamp;
         qrgEncoder = new QRGEncoder(QR_String, null, QRGContents.Type.TEXT, dim);
         try{
             bitmap = qrgEncoder.getBitmap();

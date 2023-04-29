@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text=""
-            android:textColor="#112FD1"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
 

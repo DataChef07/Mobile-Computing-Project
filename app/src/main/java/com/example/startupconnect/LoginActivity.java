@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
     private Button login;
+    private static String user_email="";
     private boolean loginclickflag = false;
     private TextView forgotPassword;
     private FirebaseAuth auth;
@@ -61,9 +63,15 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else{
                                 if(auth.getCurrentUser().isEmailVerified()){
+                                    FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                                    String name=user.getDisplayName();
+                                    user_email=user.getEmail();
+
+                                    Log.i("abc", "onComplete: ===>"+name+"===>"+user.getPhoneNumber());
                                     userName = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).toString();
+                                    Toast.makeText(LoginActivity.this, user_email, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this, Recycle_loginandreg.class);
-                                    intent.putExtra(EXTRA_USERNAME,userName);
+                                    intent.putExtra(EXTRA_USERNAME,user_email);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -129,6 +137,6 @@ public class LoginActivity extends AppCompatActivity {
 //    }
     static public String getData()
     {
-        return userName;
+        return user_email;
     }
 }

@@ -18,6 +18,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ComplaintActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
@@ -98,14 +102,21 @@ public class ComplaintActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseUser user = auth.getCurrentUser();
-        String id = user.getUid();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+//        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
+        String user = auth.getCurrentUser().getUid();
+//        DatabaseReference instance = auth.getReference("complaints");
+        DatabaseReference complaintsReference = FirebaseDatabase.getInstance().getReference("complaints").child(user);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String ComplaintText = description.getText().toString();
-
+                Map complaintDetails = new HashMap<>();
+                complaintDetails.put("text", ComplaintText);
+                complaintDetails.put("sport", category);
+                complaintDetails.put("type", subcategory);
+                complaintsReference.push().setValue(complaintDetails);
+                Toast.makeText(ComplaintActivity.this, "Complaint Registered...", Toast.LENGTH_SHORT).show();
+                Log.i("ComplaintActivity", "Complaint Registered...");
 
             }
         });

@@ -24,7 +24,7 @@ import androidmads.library.qrgenearator.QRGEncoder;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    private Button logout, refreshQR, complaint, rules;
+    private Button logout, refreshQR, complaint, rules, find;
     private ImageView QRimage;
     private TextView t1;
     private Bitmap bitmap;
@@ -49,6 +49,7 @@ public class MainActivity2 extends AppCompatActivity {
         QRimage = findViewById(R.id.QRimage);
         complaint = findViewById(R.id.complaint);
         rules = findViewById(R.id.rules);
+        find = findViewById(R.id.Find);
         t1=findViewById(R.id.textView);
 
         t1.setText(sport);
@@ -89,6 +90,15 @@ public class MainActivity2 extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity2.this, rules.class);
                 intent.putExtra(EXTRA_SPORT,sport);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        find.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity2.this, findBuddy.class);
                 startActivity(intent);
                 finish();
             }

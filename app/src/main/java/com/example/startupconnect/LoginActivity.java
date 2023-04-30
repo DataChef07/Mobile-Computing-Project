@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null && user.isEmailVerified()) {
-                    String userName = auth.getCurrentUser().toString();
+                    String userName = auth.getCurrentUser().getUid().toString();
                     Intent intent = new Intent( LoginActivity.this, Recycle_loginandreg.class);//later we create
                     intent.putExtra(EXTRA_USERNAME,userName);
                     startActivity(intent);

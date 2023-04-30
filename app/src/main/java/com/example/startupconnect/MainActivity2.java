@@ -119,6 +119,7 @@ public class MainActivity2 extends AppCompatActivity {
         dim = dim * 3/4;
         Intent intent = getIntent();
         userName = intent.getStringExtra(LoginActivity.EXTRA_USERNAME);
+//        userName = auth.getCurrentUser().getUid();
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm").format(new java.util.Date());
         QR_String = userName + "--"+ sport +"--"+ timeStamp;
         qrgEncoder = new QRGEncoder(QR_String, null, QRGContents.Type.TEXT, dim);
@@ -126,6 +127,7 @@ public class MainActivity2 extends AppCompatActivity {
             bitmap = qrgEncoder.getBitmap();
             QRimage.setImageBitmap(bitmap);
             Log.d("QrCode","Success");
+            Log.d("QR TExt", "QRTEXT ===>  " + QR_String);
         }
         catch (Exception e){
             Log.d("QRCODE", e.toString());

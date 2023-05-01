@@ -94,14 +94,9 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean matched = false;
                 boolean signedin = false;
                 int rating = 0;
-                ArrayList<String> complaints=new ArrayList<String>();
-                complaints.add("");
-                ArrayList<String> category=new ArrayList<String>();
-                category.add("");
-                ArrayList<String> subcategory=new ArrayList<String>();
-                subcategory.add("");
-                ArrayList<String> status=new ArrayList<String>();
-                status.add("");
+                int equipment =0;
+                String sport ="";
+                String timer ="";
 
 
                 if(dataCheck(Email, Password, Name, Phno, Checkbox)){
@@ -128,10 +123,9 @@ public class RegisterActivity extends AppCompatActivity {
                                             userDetails.put("matched", matched);
                                             userDetails.put("signedin", signedin);
                                             userDetails.put("rating", rating);
-                                            userDetails.put("complaints", complaints);
-                                            userDetails.put("category", category);
-                                            userDetails.put("subcategory", subcategory);
-                                            userDetails.put("status", status);
+                                            userDetails.put("equipment", equipment);
+                                            userDetails.put("sport", sport);
+                                            userDetails.put("timer", timer);
 
                                             curruser.updateChildren(userDetails);
                                             email.setText("");

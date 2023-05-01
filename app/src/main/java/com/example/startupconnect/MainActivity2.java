@@ -99,6 +99,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity2.this, findBuddy.class);
+                intent.putExtra(EXTRA_SPORT,sport);
                 startActivity(intent);
                 finish();
             }

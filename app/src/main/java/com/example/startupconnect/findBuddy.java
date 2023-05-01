@@ -3,6 +3,8 @@ package com.example.startupconnect;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +42,7 @@ public class findBuddy extends AppCompatActivity {
     ArrayList<Integer> matched_index = new ArrayList<>();
     String MatchedUser = "";
     String CurrUser;
+    String sport="";
 
     private FirebaseAuth auth;
 
@@ -46,6 +51,8 @@ public class findBuddy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_buddy2);
 
+        Intent intent = getIntent();
+        sport = intent.getStringExtra(MainActivity2.EXTRA_SPORT);
         available_members = findViewById(R.id.disp);
         intrested_checkbox = findViewById(R.id.intrested);
         confirm = findViewById(R.id.confirm);
@@ -54,14 +61,14 @@ public class findBuddy extends AppCompatActivity {
         CurrUser = auth.getCurrentUser().getUid();
         Log.d("userdetail", "detail ===>  " + CurrUser);
 
-
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(CurrUser).child("intrested");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(CurrUser);
 
         intrested_checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(intrested_checkbox.isChecked()){
-                    mDatabase.setValue(true);
+                    mDatabase.child("sport").setValue(sport);
+                    mDatabase.child("intrested").setValue(true);
                     fetchDetails();
                     int count = countIntrested(CurrUser);
                     Log.d("findBuddy", "matched_index ===>   " + matched_index);
@@ -76,7 +83,8 @@ public class findBuddy extends AppCompatActivity {
                     Log.d("matchedUser", "matcheduser ===>  " + MatchedUser);
                 }
                 if(!intrested_checkbox.isChecked()){
-                    mDatabase.setValue(false);
+                    mDatabase.child("sport").setValue("");
+                    mDatabase.child("intrested").setValue(false);
                     available_members.setText("");
                 }
             }
@@ -88,12 +96,28 @@ public class findBuddy extends AppCompatActivity {
             public void onClick(View v) {
                 intrested_checkbox.setChecked(false);
                 intrested_checkbox.setEnabled(false);
-                DatabaseReference obj = FirebaseDatabase.getInstance().getReference().child("Users").child(CurrUser);
-                obj.child("intrested").setValue(false);
-                obj.child("matched").setValue(true);
-                obj = FirebaseDatabase.getInstance().getReference().child("Users").child(MatchedUser);
-                obj.child("intrested").setValue(false);
-                obj.child("matched").setValue(true);
+                DatabaseReference obj = FirebaseDatabase.getInstance().getReference().child("Users");
+                obj.child(CurrUser).child("intrested").setValue(false);
+                obj.child(CurrUser).child("matched").setValue(true);
+
+                obj.child(MatchedUser).child("matched").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Boolean matchedval = snapshot.getValue(Boolean.class);
+                        if(matchedval){
+                            String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm").format(new java.util.Date());
+                            obj.child(CurrUser).child("timer").setValue(timeStamp);
+                        }
+                        else {
+                            Log.d("test", "keep waiting ..............");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
@@ -120,12 +144,13 @@ public class findBuddy extends AppCompatActivity {
         int count =0;
         matched_index.clear();
         for(int i = 0; i<len; i++){
-            if(intrested_list.get(i)){
+            if(sport.equals(Sport_list.get(i)) && intrested_list.get(i)){
                 matched_index.add(i);
                 count++;
             }
         }
-        matched_index.remove((Integer) matched_index.indexOf(currIndex));
+        matched_index.remove((Integer) currIndex);
+
         return count -1;
     }
 
@@ -152,9 +177,12 @@ public class findBuddy extends AppCompatActivity {
 
                     Object[] i= temp.values().toArray();
                     intrested_list.add((Boolean) i[0]);
-                    matched_list.add((Boolean) i[1]);
+                    Sport_list.add((String) i[9]);
+                    matched_list.add((Boolean) i[6]);
                     name_list.add((String) i[3]);
                     Rating_list.add(String.valueOf(i[4]));
+
+
                     Log.d("temp", "val ===>   " + i[3]);
 
                 }

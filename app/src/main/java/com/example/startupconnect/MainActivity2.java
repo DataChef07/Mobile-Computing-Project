@@ -94,6 +94,7 @@ public class MainActivity2 extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                auth=FirebaseAuth.getInstance();
                 auth.signOut();
                 Intent intent = new Intent(MainActivity2.this, Loginandreg.class);
                 startActivity(intent);

@@ -3,6 +3,7 @@ package com.example.startupconnect;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
@@ -41,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
             + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
     //references ====> https://mkyong.com/regular-expressions/how-to-validate-email-address-with-regular-expression/#:~:text=Email%20Regex%20%E2%80%93%20Simple%20Validation.&text=%2B)%40(%5CS%2B)%24,then%20a%20non%20whitespace%20character.&text=1.1%20A%20Java%20example%20using%20the%20above%20regex%20for%20email%20validation.&text=1.2%20Below%20is%20a%20JUnit,some%20valid%20and%20invalid%20emails.
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +59,11 @@ public class RegisterActivity extends AppCompatActivity {
         final CheckBox checkBox = findViewById(R.id.checkbox);
         checkBox.setText("");
         termsAndConditions.setText(Html.fromHtml("I have read and agree to the " + "<a href = 'https://privacypolicysportify.blogspot.com/2023/03/privacy-policy.html'> Terms and Conditions </a>"));
+//        termsAndConditions.setText(Html.fromHtml("I have read and agree to the " + "<a href='https://privacypolicysportify.blogspot.com/2023/03/privacy-policy.html'><span style='color:black'>Terms and Conditions</span></a>"));
+
         termsAndConditions.setClickable(true);
         termsAndConditions.setMovementMethod(LinkMovementMethod.getInstance());
+//        termsAndConditions.setTextColor(R.color.black);
 
         auth = FirebaseAuth.getInstance();
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {

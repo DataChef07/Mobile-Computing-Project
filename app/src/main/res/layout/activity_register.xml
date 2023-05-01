@@ -162,22 +162,24 @@
 
                     <Button
                         android:id="@+id/changePassword"
-                        android:layout_width="150dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:layout_marginLeft="8dp"
                         android:background="@drawable/custom_box"
                         android:backgroundTint="@color/link_blue"
                         android:text="login"
                         android:textColor="@color/white" />
+
                         <Button
                             android:id="@+id/existingUser"
-                            android:layout_width="150dp"
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/custom_box"
                             android:backgroundTint="@color/link_blue"
                             android:text="Sign up"
-                            android:layout_marginLeft="35dp"
                             android:textColor="@color/white" />
                     </LinearLayout>
 

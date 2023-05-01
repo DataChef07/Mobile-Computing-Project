@@ -45,6 +45,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         Intent intent = getIntent();
         userName = intent.getStringExtra(LoginActivity.EXTRA_USERNAME);
+        userName = FirebaseAuth.getInstance().getCurrentUser().getUid();
         sport = intent.getStringExtra(AdapterRecycleLogin.EXTRA_SPORT);
 
         BottomNavigationView bottomNavigationView= findViewById(R.id.bottom_nav);
@@ -54,7 +55,7 @@ public class MainActivity2 extends AppCompatActivity {
                 int itemId = item.getItemId();
                 switch (itemId) {
                     case R.id.refreshQRbutton:
-                        setImage();
+                        setImage(userName);
                         Toast.makeText(MainActivity2.this, "welcome:  " + QR_String, Toast.LENGTH_SHORT).show();
                         // Handle home item selection
                         break;
@@ -76,6 +77,8 @@ public class MainActivity2 extends AppCompatActivity {
                 return true;
             }
         });
+
+
         logout = findViewById(R.id.logout);
 
         QRimage = findViewById(R.id.QRimage);
@@ -85,9 +88,9 @@ public class MainActivity2 extends AppCompatActivity {
         t1=findViewById(R.id.textView);
 
         t1.setText(sport);
-        setImage();
+        setImage(userName);
 
-        auth = FirebaseAuth.getInstance();
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,7 +140,7 @@ public class MainActivity2 extends AppCompatActivity {
 //        });
     }
 
-    private void setImage() {
+    private void setImage(String userName) {
         WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         Point point = new Point();
@@ -150,8 +153,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         dim = dim * 3/4;
         Intent intent = getIntent();
-        userName = intent.getStringExtra(LoginActivity.EXTRA_USERNAME);
-//        userName = auth.getCurrentUser().getUid();
+//        userName = intent.getStringExtra(LoginActivity.EXTRA_USERNAME);
+//        String userName = auth.getCurrentUser().getUid();
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm").format(new java.util.Date());
         QR_String = userName + "--"+ sport +"--"+ timeStamp;
         qrgEncoder = new QRGEncoder(QR_String, null, QRGContents.Type.TEXT, dim);

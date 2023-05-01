@@ -10,22 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+<!--        <ImageView-->
+<!--            android:id="@+id/splash_img"-->
+<!--            android:layout_width="330dp"-->
+<!--            android:layout_height="330dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:src="@drawable/logo"-->
+<!--            app:layout_constraintTop_ />-->
         <ImageView
             android:id="@+id/splash_img"
             android:layout_width="330dp"
             android:layout_height="330dp"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/logo"
-            app:layout_constraintTop_toTopOf="parent" />
-<!--        <ImageView-->
-<!--            android:id="@+id/splash_img"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:src="@drawable/sportifysplashimage"-->
-<!--            android:contentDescription="@string/splashscreenimage">-->
+            android:contentDescription="@string/splashscreenimage">
 
         </ImageView>
     </FrameLayout>

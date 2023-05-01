@@ -1,5 +1,6 @@
 package com.example.startupconnect;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
@@ -44,12 +47,40 @@ public class MainActivity2 extends AppCompatActivity {
         userName = intent.getStringExtra(LoginActivity.EXTRA_USERNAME);
         sport = intent.getStringExtra(AdapterRecycleLogin.EXTRA_SPORT);
 
+        BottomNavigationView bottomNavigationView= findViewById(R.id.bottom_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                switch (itemId) {
+                    case R.id.refreshQRbutton:
+                        setImage();
+                        Toast.makeText(MainActivity2.this, "welcome:  " + QR_String, Toast.LENGTH_SHORT).show();
+                        // Handle home item selection
+                        break;
+                    case R.id.Find:
+                        Intent intent = new Intent(MainActivity2.this, findBuddy.class);
+                        startActivity(intent);
+                        finish();
+                        // Handle profile item selection
+                        break;
+                    case R.id.rules:
+                        Intent intent1 = new Intent(MainActivity2.this, rules.class);
+                        intent1.putExtra(EXTRA_SPORT,sport);
+                        startActivity(intent1);
+                        finish();
+                        // Handle settings item selection
+                        break;
+                }
+                return true;
+            }
+        });
         logout = findViewById(R.id.logout);
-        refreshQR = findViewById(R.id.refreshQRbutton);
+
         QRimage = findViewById(R.id.QRimage);
         complaint = findViewById(R.id.complaint);
-        rules = findViewById(R.id.rules);
-        find = findViewById(R.id.Find);
+//        rules = findViewById(R.id.rules);
+//        find = findViewById(R.id.Find);
         t1=findViewById(R.id.textView);
 
         t1.setText(sport);
@@ -66,15 +97,15 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
-        refreshQR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                setImage();
-                Toast.makeText(MainActivity2.this, "welcome:  " + QR_String, Toast.LENGTH_SHORT).show();
-
-            }
-        });
+//        refreshQR.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                setImage();
+//                Toast.makeText(MainActivity2.this, "welcome:  " + QR_String, Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
         complaint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,24 +116,24 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
-        rules.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity2.this, rules.class);
-                intent.putExtra(EXTRA_SPORT,sport);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        rules.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity2.this, rules.class);
+//                intent.putExtra(EXTRA_SPORT,sport);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
 
-        find.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity2.this, findBuddy.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        find.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity2.this, findBuddy.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
     }
 
     private void setImage() {

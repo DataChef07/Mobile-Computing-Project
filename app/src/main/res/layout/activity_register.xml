@@ -168,7 +168,7 @@
                         android:layout_marginLeft="8dp"
                         android:background="@drawable/custom_box"
                         android:backgroundTint="@color/link_blue"
-                        android:text="login"
+                        android:text="Sign Up"
                         android:textColor="@color/white" />
 
                         <Button
@@ -179,7 +179,7 @@
                             android:layout_marginTop="10dp"
                             android:background="@drawable/custom_box"
                             android:backgroundTint="@color/link_blue"
-                            android:text="Sign up"
+                            android:text="Sign In"
                             android:textColor="@color/white" />
                     </LinearLayout>
 

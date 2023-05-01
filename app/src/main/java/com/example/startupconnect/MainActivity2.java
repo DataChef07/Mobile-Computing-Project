@@ -60,6 +60,7 @@ public class MainActivity2 extends AppCompatActivity {
                         break;
                     case R.id.Find:
                         Intent intent = new Intent(MainActivity2.this, findBuddy.class);
+                        intent.putExtra(EXTRA_SPORT,sport);
                         startActivity(intent);
                         finish();
                         // Handle profile item selection

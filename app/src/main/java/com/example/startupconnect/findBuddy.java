@@ -107,6 +107,7 @@ public class findBuddy extends AppCompatActivity {
                         if(matchedval){
                             String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm").format(new java.util.Date());
                             obj.child(CurrUser).child("timer").setValue(timeStamp);
+
                         }
                         else {
                             Log.d("test", "keep waiting ..............");

@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,7 +30,8 @@ public class Recycle_loginandreg extends AppCompatActivity implements Navigation
     RecyclerView r1;
     ArrayList<ContentRecylelogin> arr=new ArrayList<>();
     String TAG="Recyle_loginandreg";
-
+    private FirebaseAuth auth;
+    String userName="";
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -40,6 +42,8 @@ public class Recycle_loginandreg extends AppCompatActivity implements Navigation
 
         r1=findViewById(R.id.recycle1);
         r1.setLayoutManager(new LinearLayoutManager(this));
+
+        userName = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         // defining the hooks
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -134,6 +138,11 @@ public class Recycle_loginandreg extends AppCompatActivity implements Navigation
                 break;
                 // go to complaints activity
             case R.id.nav_logout:
+                auth=FirebaseAuth.getInstance();
+                auth.signOut();
+                Intent intent = new Intent(Recycle_loginandreg.this, Loginandreg.class);
+                startActivity(intent);
+                finish();
                 // logout the user
         }
         return true;

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,10 +45,14 @@ public class Recycle_loginandreg extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
 
         //getSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.baseline_menu_24);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_drawer_open, com.google.android.gms.ads.impl.R.string.native_body);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        // code when navigation items are clicked
 
         DatabaseReference reference;
         reference= FirebaseDatabase.getInstance().getReference("sports");
@@ -95,5 +100,17 @@ public class Recycle_loginandreg extends AppCompatActivity {
 
         AdapterRecycleLogin adapter=new AdapterRecycleLogin(this,arr);
         r1.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+        {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+        }
     }
 }

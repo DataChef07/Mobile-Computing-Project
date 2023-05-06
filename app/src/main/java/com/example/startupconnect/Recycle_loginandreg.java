@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Recycle_loginandreg extends AppCompatActivity {
+public class Recycle_loginandreg extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     RecyclerView r1;
     ArrayList<ContentRecylelogin> arr=new ArrayList<>();
@@ -47,12 +48,14 @@ public class Recycle_loginandreg extends AppCompatActivity {
         //getSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.baseline_menu_24);
-
+        navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_drawer_open, com.google.android.gms.ads.impl.R.string.native_body);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         // code when navigation items are clicked
+        navigationView.setNavigationItemSelectedListener(this);
+        //
 
         DatabaseReference reference;
         reference= FirebaseDatabase.getInstance().getReference("sports");
@@ -112,5 +115,10 @@ public class Recycle_loginandreg extends AppCompatActivity {
         else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return true;
     }
 }

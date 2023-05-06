@@ -1,7 +1,10 @@
 package com.example.startupconnect;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +13,7 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,6 +26,10 @@ public class Recycle_loginandreg extends AppCompatActivity {
     RecyclerView r1;
     ArrayList<ContentRecylelogin> arr=new ArrayList<>();
     String TAG="Recyle_loginandreg";
+
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +37,17 @@ public class Recycle_loginandreg extends AppCompatActivity {
 
         r1=findViewById(R.id.recycle1);
         r1.setLayoutManager(new LinearLayoutManager(this));
+
+        // defining the hooks
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
+
+        //getSupportActionBar(toolbar);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_drawer_open, com.google.android.gms.ads.impl.R.string.native_body);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
         DatabaseReference reference;
         reference= FirebaseDatabase.getInstance().getReference("sports");

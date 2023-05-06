@@ -27,7 +27,7 @@ import androidmads.library.qrgenearator.QRGEncoder;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    private Button logout, refreshQR, complaint, rules, find;
+//    private Button logout, refreshQR, complaint, rules, find;
     private ImageView QRimage;
     private TextView t1;
     private Bitmap bitmap;
@@ -79,10 +79,10 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
 
-        logout = findViewById(R.id.logout);
+//        logout = findViewById(R.id.logout);
 
         QRimage = findViewById(R.id.QRimage);
-        complaint = findViewById(R.id.complaint);
+//        complaint = findViewById(R.id.complaint);
 //        rules = findViewById(R.id.rules);
 //        find = findViewById(R.id.Find);
         t1=findViewById(R.id.textView);
@@ -91,16 +91,16 @@ public class MainActivity2 extends AppCompatActivity {
         setImage(userName);
 
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                auth=FirebaseAuth.getInstance();
-                auth.signOut();
-                Intent intent = new Intent(MainActivity2.this, Loginandreg.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                auth=FirebaseAuth.getInstance();
+//                auth.signOut();
+//                Intent intent = new Intent(MainActivity2.this, Loginandreg.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
 
 //        refreshQR.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -112,14 +112,14 @@ public class MainActivity2 extends AppCompatActivity {
 //            }
 //        });
 
-        complaint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity2.this, ComplaintActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        complaint.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity2.this, ComplaintActivity.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
 
 //        rules.setOnClickListener(new View.OnClickListener() {
 //            @Override

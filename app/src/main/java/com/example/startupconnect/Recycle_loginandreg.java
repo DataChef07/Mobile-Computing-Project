@@ -141,8 +141,8 @@ public class Recycle_loginandreg extends AppCompatActivity implements Navigation
                 auth=FirebaseAuth.getInstance();
                 auth.signOut();
                 Intent intent = new Intent(Recycle_loginandreg.this, Loginandreg.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finish();
                 // logout the user
         }
         return true;

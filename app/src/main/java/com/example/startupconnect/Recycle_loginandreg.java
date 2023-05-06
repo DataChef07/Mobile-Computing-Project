@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -119,6 +120,22 @@ public class Recycle_loginandreg extends AppCompatActivity implements Navigation
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId())
+        {
+            case R.id.nav_profile:
+                // go to profile activity
+                Intent profile = new Intent(Recycle_loginandreg.this, UserProfileActivity.class);
+                startActivity(profile);
+                break;
+            case R.id.nav_complaint:
+                Intent complaint = new Intent(Recycle_loginandreg.this, ComplaintActivity.class);
+                startActivity(complaint);
+                break;
+                // go to complaints activity
+            case R.id.nav_logout:
+                // logout the user
+        }
         return true;
     }
 }

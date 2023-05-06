@@ -2,6 +2,7 @@ package com.example.startupconnect;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -117,6 +118,10 @@ public class ComplaintActivity extends AppCompatActivity {
                 complaintsReference.push().setValue(complaintDetails);
                 Toast.makeText(ComplaintActivity.this, "Complaint Registered...", Toast.LENGTH_SHORT).show();
                 Log.i("ComplaintActivity", "Complaint Registered...");
+                // take the user back to the main screen
+                Intent main = new Intent(ComplaintActivity.this, Recycle_loginandreg.class);
+                startActivity(main);
+                finish();
 
             }
         });

@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Complaint Details"
-                android:textColor="#9C27B0"
+                android:textColor="@color/color_secondary_variant"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -34,8 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="Category"
-                android:textColor="#9C27B0"
+                android:text="Sport"
+                android:textColor="@color/color_secondary_variant"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sub-Category"
-                android:textColor="#9C27B0"
+                android:textColor="@color/color_secondary_variant"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -98,8 +98,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:gravity="center"
+                android:backgroundTint="@color/color_secondary_variant"
                 android:text="Submit"
-                android:textColor="#070407"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

@@ -40,7 +40,7 @@ public class ComplaintActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         Spinner spinner = findViewById(R.id.spinner);   //get spinner details
-        String[] Sport = {"Select","Badminton", "Table Tennis", "Gym", "Squash", "Air Hockey", "8 ball pool", "Swimming", "Foos Ball"};
+        String[] Sport = {"Select","Badminton", "Table Tennis", "Gym", "Squash", "Air Hockey", "8 ball pool", "Swimming", "Foosball"};
 
         //populate the spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ComplaintActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, Sport);

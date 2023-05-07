@@ -82,7 +82,7 @@ public class findBuddy extends AppCompatActivity {
 
                     Log.d("matchedUser", "matcheduser ===>  " + MatchedUser);
                 }
-                if(!intrested_checkbox.isChecked()){
+                else{
                     mDatabase.child("sport").setValue("");
                     mDatabase.child("intrested").setValue(false);
                     available_members.setText("");
@@ -152,7 +152,7 @@ public class findBuddy extends AppCompatActivity {
         }
         matched_index.remove((Integer) currIndex);
 
-        return count -1;
+        return count;
     }
 
     private void fetchDetails() {
@@ -177,9 +177,22 @@ public class findBuddy extends AppCompatActivity {
                     Log.d("val check", "values ===>   "+ temp.values());
 
                     Object[] i= temp.values().toArray();
+                    Log.i("TAG", "onDataChange: i");
+
+                    // i[0] == interested
+                    // i[1] == timestamp
+                    //i[2] == signedIn
+                    //i[3] == name
+                    //i[4] == rating
+                    // i[5] == roll no
+                    //i[6] == equipment
+                    //i[7] == matched
+                    //i[8] == phone
+                    //i[9] == profilePicUrl
+                    //i[10] == sport
                     intrested_list.add((Boolean) i[0]);
-                    Sport_list.add((String) i[9]);
-                    matched_list.add((Boolean) i[6]);
+                    Sport_list.add((String) i[10]);
+                    matched_list.add((Boolean) i[7]);
                     name_list.add((String) i[3]);
                     Rating_list.add(String.valueOf(i[4]));
 

@@ -40,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     private final String emailPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
             + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+    //private final String emailPattern = "^(?=.{1,253}\\.)[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*\\.iiitd\\.ac\\.in$";
     //references ====> https://mkyong.com/regular-expressions/how-to-validate-email-address-with-regular-expression/#:~:text=Email%20Regex%20%E2%80%93%20Simple%20Validation.&text=%2B)%40(%5CS%2B)%24,then%20a%20non%20whitespace%20character.&text=1.1%20A%20Java%20example%20using%20the%20above%20regex%20for%20email%20validation.&text=1.2%20Below%20is%20a%20JUnit,some%20valid%20and%20invalid%20emails.
 
     @SuppressLint("ResourceAsColor")
@@ -165,8 +166,9 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (!email.matches (emailPattern)) {
-            Toast.makeText(this, "Please Enter valid email address", Toast.LENGTH_SHORT).show();
+        if (!email.endsWith("@iiitd.ac.in")) {
+            //Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Enter valid IIITD email address", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (!checkbox) {

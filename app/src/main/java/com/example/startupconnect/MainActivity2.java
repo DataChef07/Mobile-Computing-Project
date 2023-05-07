@@ -154,8 +154,6 @@ public class MainActivity2 extends AppCompatActivity {
 
         dim = dim * 3/4;
         Intent intent = getIntent();
-//        userName = intent.getStringExtra(LoginActivity.EXTRA_USERNAME);
-//        String userName = auth.getCurrentUser().getUid();
         String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new java.util.Date());
         QR_String = userName + "--"+ sport +"--"+ timeStamp;
         qrgEncoder = new QRGEncoder(QR_String, null, QRGContents.Type.TEXT, dim);

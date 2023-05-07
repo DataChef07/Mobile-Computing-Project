@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +44,9 @@ public class findBuddy extends AppCompatActivity {
     String MatchedUser = "", matchedName;
     String CurrUser;
     String sport="";
+
+    Handler handler = new Handler();
+    Runnable runnable;
 
     private FirebaseAuth auth;
 
@@ -121,21 +125,51 @@ public class findBuddy extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intrested_checkbox.setChecked(false);
-                intrested_checkbox.setEnabled(false);
-                matched.setText("Successfully matched with "+matchedName);
+                handler.postDelayed(runnable = new Runnable(){
 
-                DatabaseReference obj = FirebaseDatabase.getInstance().getReference().child("Users");
-                obj.child(CurrUser).child("intrested").setValue(false);
-                obj.child(CurrUser).child("matched").setValue(true);
+                    @Override
+                    public void run() {
+                        handler.postDelayed(runnable, 3000);
 
-                String[] time = {""};
-                obj.child(MatchedUser).child("timer")
-                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                        intrested_checkbox.setChecked(false);
+                        intrested_checkbox.setEnabled(false);
+
+                        DatabaseReference obj = FirebaseDatabase.getInstance().getReference().child("Users");
+                        obj.child(CurrUser).child("intrested").setValue(false);
+                        obj.child(CurrUser).child("matched").setValue(true);
+
+                        String[] time = {""};
+                        obj.child(MatchedUser).child("timer")
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        time[0] = snapshot.getValue(String.class);
+                                        Log.d("time", "time[0] ===>  " + time[0]);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+                        obj.child(MatchedUser).child("matched").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                time[0] = snapshot.getValue(String.class);
-                                Log.d("time", "time[0] ===>  " + time[0]);
+                                Boolean matchedval = snapshot.getValue(Boolean.class);
+                                if(matchedval){
+                                    String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new java.util.Date());
+                                    obj.child(CurrUser).child("timer").setValue(timeStamp);
+
+                                    matched.setText("Successfully matched with "+matchedName);
+                                    msg.setVisibility(View.VISIBLE);
+
+
+                                }
+                                else {
+                                    msg.setText("Waiting for your partner to confirm. ");
+                                    msg.setVisibility(View.VISIBLE);
+                                }
                             }
 
                             @Override
@@ -143,35 +177,9 @@ public class findBuddy extends AppCompatActivity {
 
                             }
                         });
-
-                obj.child(MatchedUser).child("matched").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Boolean matchedval = snapshot.getValue(Boolean.class);
-                        if(matchedval && time[0].equals("")){
-                            String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new java.util.Date());
-                            obj.child(CurrUser).child("timer").setValue(timeStamp);
-                            msg.setVisibility(View.VISIBLE);
-
-
-                        }
-                        else if(!time[0].equals("")){
-                            Log.d("test", "keep waiting ..............");
-                            msg.setText("Unfortuntely the player connected with someone else. Please Try Again.....");
-                            msg.setVisibility(View.VISIBLE);
-
-                        }
-                        else if(!matchedval){
-                            msg.setText("Waiting for your partner to confirm. Press confirm again to know status");
-                            msg.setVisibility(View.VISIBLE);
-                        }
                     }
+                }, 3000);
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
             }
         });
 
@@ -270,5 +278,10 @@ public class findBuddy extends AppCompatActivity {
         };
         userlist.addListenerForSingleValueEvent(eventListener);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

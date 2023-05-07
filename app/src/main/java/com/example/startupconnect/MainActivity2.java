@@ -56,7 +56,7 @@ public class MainActivity2 extends AppCompatActivity {
                 switch (itemId) {
                     case R.id.refreshQRbutton:
                         setImage(userName);
-                        Toast.makeText(MainActivity2.this, "welcome:  " + QR_String, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity2.this, "welcome:  " + QR_String, Toast.LENGTH_SHORT).show();
                         // Handle home item selection
                         break;
                     case R.id.Find:

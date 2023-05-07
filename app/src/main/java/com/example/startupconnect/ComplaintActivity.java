@@ -59,7 +59,7 @@ public class ComplaintActivity extends AppCompatActivity {
                 }
                 else {
                     category = adapterView.getItemAtPosition(i).toString();
-                    Toast.makeText(ComplaintActivity.this, category, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ComplaintActivity.this, category, Toast.LENGTH_SHORT).show();
                     Log.i("ComplaintActivity", "Sport: " + category);
                 }
 
@@ -91,7 +91,7 @@ public class ComplaintActivity extends AppCompatActivity {
                 }
                 else {
                     subcategory = adapterView.getItemAtPosition(i).toString();
-                    Toast.makeText(ComplaintActivity.this, subcategory, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ComplaintActivity.this, subcategory, Toast.LENGTH_SHORT).show();
                     Log.i("ComplaintActivity", "subcategory: " + subcategory);
                 }
 

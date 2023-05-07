@@ -96,10 +96,22 @@
                 android:minHeight="40dp"
                 app:layout_constraintVertical_bias="0.5" />
 
+        <TextView
+            android:id="@+id/msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/matched"
+            android:layout_marginTop="15dp"
+            android:visibility="invisible"
+            android:fontFamily="@font/candal"
+            android:text="Your partner is waiting near sports block. Meet him in 20 mins."
+            android:textSize="18sp" />
+
         <Button
             android:id="@+id/confirm"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
+            android:visibility="invisible"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_height="wrap_content"

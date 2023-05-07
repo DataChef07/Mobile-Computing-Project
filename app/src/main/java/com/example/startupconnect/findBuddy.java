@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class findBuddy extends AppCompatActivity {
-    TextView available_members, matched;
+    TextView available_members, matched, msg;
     Button confirm, search;
     CheckBox intrested_checkbox;
     String name;
@@ -59,6 +59,7 @@ public class findBuddy extends AppCompatActivity {
         matched = findViewById(R.id.matched);
         auth = FirebaseAuth.getInstance();
         search = findViewById(R.id.search);
+        msg = findViewById(R.id.msg);
         CurrUser = auth.getCurrentUser().getUid();
         Log.d("userdetail", "detail ===>  " + CurrUser);
 
@@ -67,6 +68,10 @@ public class findBuddy extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intrested_checkbox.setChecked(true);
+                intrested_checkbox.setChecked(false);
+                intrested_checkbox.setChecked(true);
+                intrested_checkbox.setChecked(false);
                 intrested_checkbox.setChecked(true);
                 intrested_checkbox.setChecked(false);
                 intrested_checkbox.setChecked(true);
@@ -98,7 +103,8 @@ public class findBuddy extends AppCompatActivity {
 
                             }
                         });
-                        matched.setText("Matched with ====>    " + matchedName);
+                        matched.setText(matchedName + " is also searching for a buddy. Want to connect?");
+                        confirm.setVisibility(View.VISIBLE);
                     }
 
                     Log.d("matchedUser", "matcheduser ===>  " + MatchedUser);
@@ -117,6 +123,8 @@ public class findBuddy extends AppCompatActivity {
             public void onClick(View v) {
                 intrested_checkbox.setChecked(false);
                 intrested_checkbox.setEnabled(false);
+                matched.setText("Successfully matched with "+matchedName);
+                msg.setVisibility(View.VISIBLE);
                 DatabaseReference obj = FirebaseDatabase.getInstance().getReference().child("Users");
                 obj.child(CurrUser).child("intrested").setValue(false);
                 obj.child(CurrUser).child("matched").setValue(true);

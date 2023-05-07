@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class findBuddy extends AppCompatActivity {
     TextView available_members, matched;
-    Button confirm;
+    Button confirm, search;
     CheckBox intrested_checkbox;
     String name;
     ArrayList<String> UserID_list= new ArrayList<>();
@@ -58,11 +58,20 @@ public class findBuddy extends AppCompatActivity {
         confirm = findViewById(R.id.confirm);
         matched = findViewById(R.id.matched);
         auth = FirebaseAuth.getInstance();
+        search = findViewById(R.id.search);
         CurrUser = auth.getCurrentUser().getUid();
         Log.d("userdetail", "detail ===>  " + CurrUser);
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(CurrUser);
 
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intrested_checkbox.setChecked(true);
+                intrested_checkbox.setChecked(false);
+                intrested_checkbox.setChecked(true);
+            }
+        });
         intrested_checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

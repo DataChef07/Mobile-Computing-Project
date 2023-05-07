@@ -40,7 +40,7 @@ public class findBuddy extends AppCompatActivity {
     ArrayList<String> Sport_list= new ArrayList<>();
 
     ArrayList<Integer> matched_index = new ArrayList<>();
-    String MatchedUser = "";
+    String MatchedUser = "", matchedName;
     String CurrUser;
     String sport="";
 
@@ -84,9 +84,21 @@ public class findBuddy extends AppCompatActivity {
 
                     if(count > 0)
                         MatchedUser = searchForMatches(CurrUser, matched_index);
-                    available_members.setText("Members available ===>  " + String.valueOf(count));
+                    available_members.setText("Members available: " + String.valueOf(count));
                     if(!MatchedUser.equals("")){
-                        matched.setText("Matched with ====>    " + MatchedUser);
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(MatchedUser);
+                        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                matchedName = snapshot.child("name").getValue(String.class);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                        matched.setText("Matched with ====>    " + matchedName);
                     }
 
                     Log.d("matchedUser", "matcheduser ===>  " + MatchedUser);

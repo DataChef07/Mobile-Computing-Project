@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="25dp"
-            android:paddingTop="50dp"
+            android:paddingTop="25dp"
             android:paddingRight="25dp">
 
 
@@ -24,10 +24,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Complaint Details"
+                android:text="Register a Complaint"
+                android:layout_marginBottom="30dp"
                 android:textColor="@color/color_secondary_variant"
-                android:textSize="24sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/Categorytext"
@@ -78,7 +84,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:gravity="top"
                 android:scrollbars = "vertical">
 
@@ -100,6 +106,7 @@
                 android:gravity="center"
                 android:backgroundTint="@color/color_secondary_variant"
                 android:text="Submit"
+                android:background="@drawable/custom_box"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />

@@ -116,8 +116,9 @@ public class ComplaintActivity extends AppCompatActivity {
                 complaintDetails.put("sport", category);
                 complaintDetails.put("type", subcategory);
                 complaintsReference.push().setValue(complaintDetails);
-                Toast.makeText(ComplaintActivity.this, "Complaint Registered...", Toast.LENGTH_SHORT).show();
-                Log.i("ComplaintActivity", "Complaint Registered...");
+                Toast.makeText(ComplaintActivity.this, "Your Complaint has been Registered...", Toast.LENGTH_SHORT).show();
+                Log.i("ComplaintActivity", "Your Complaint has been Registered... Appropriated Action will be taken soon");
+                Toast.makeText(ComplaintActivity.this, "Appropriated Action will be taken soon", Toast.LENGTH_SHORT).show();
                 // take the user back to the main screen
                 Intent main = new Intent(ComplaintActivity.this, Recycle_loginandreg.class);
                 startActivity(main);

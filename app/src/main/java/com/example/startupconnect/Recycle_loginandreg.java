@@ -1,6 +1,7 @@
 package com.example.startupconnect;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -33,6 +36,7 @@ public class Recycle_loginandreg extends AppCompatActivity implements Navigation
     private FirebaseAuth auth;
     String userName="";
     DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
     NavigationView navigationView;
     Toolbar toolbar;
     @Override
@@ -50,11 +54,13 @@ public class Recycle_loginandreg extends AppCompatActivity implements Navigation
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
+
         //getSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.baseline_menu_24);
+
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_drawer_open, com.google.android.gms.ads.impl.R.string.native_body);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_drawer_open, com.google.android.gms.ads.impl.R.string.native_body);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -120,6 +126,19 @@ public class Recycle_loginandreg extends AppCompatActivity implements Navigation
         else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+        toggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        toggle.onConfigurationChanged(newConfig);
+
     }
 
     @Override

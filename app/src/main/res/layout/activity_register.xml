@@ -33,6 +33,9 @@
                 android:src="@drawable/logo"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -42,6 +45,7 @@
                 android:background="@drawable/custom_box"
                 app:cardCornerRadius="30dp"
                 app:cardElevation="30dp">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -213,6 +217,8 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            </ScrollView>
 
         </LinearLayout>
 

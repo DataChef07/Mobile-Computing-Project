@@ -2,7 +2,10 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/abril_fatface</item>
+        <item>@font/aclonica</item>
         <item>@font/asset</item>
         <item>@font/audiowide</item>
+        <item>@font/bad_script</item>
+        <item>@font/candal</item>
     </array>
 </resources>

@@ -59,9 +59,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/abril_fatface"
                         android:gravity="center"
                         android:text="Registration"
-                        android:textColor="@color/color_secondary"
+                        android:textColor="@color/grey_500"
                         android:textSize="36sp"
                         android:textStyle="bold" />
 
@@ -77,6 +78,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:hint="Enter your Email"
+                            android:background="#FFFF"
                             android:inputType="textEmailAddress"
                             android:padding="20dp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -95,6 +97,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:hint="Enter your Name"
+                            android:background="#FFFF"
                             android:inputType="textPersonName"
                             android:padding="20dp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -113,6 +116,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:hint="Enter your Roll No"
+                            android:background="#FFFF"
                             android:inputType="text"
                             android:padding="20dp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -131,6 +135,7 @@
                             android:layout_gravity="center_horizontal"
                             android:ems="10"
                             android:hint="Enter your Phone Number"
+                            android:background="#FFFF"
                             android:inputType="number"
                             android:padding="20dp"
                             android:paddingBottom="0dp"/>
@@ -150,6 +155,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:hint="Enter your Password"
+                            android:background="#FFFF"
                             android:inputType="textPassword"
                             android:padding="20dp" />
                     </com.google.android.material.textfield.TextInputLayout>

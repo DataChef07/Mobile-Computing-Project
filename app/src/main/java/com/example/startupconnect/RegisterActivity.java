@@ -32,7 +32,7 @@ import java.util.Objects;
 public class RegisterActivity extends AppCompatActivity {
 
     private Button submit;
-    private EditText email, password, name, phno;
+    private EditText email, password, name, phno, roll;
     private TextView exists, termsAndConditions;
     private RadioGroup confirm;
     private FirebaseAuth auth;
@@ -55,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.pass);
         name = findViewById(R.id.name);
         phno = findViewById(R.id.phno);
+        roll = findViewById(R.id.roll);
 
         final CheckBox checkBox = findViewById(R.id.checkbox);
         checkBox.setText("");
@@ -94,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                 final String Password = password.getText().toString();
                 final String Name = name.getText().toString();
                 final String Phno = phno.getText().toString();
+                final String rollNo = roll.getText().toString();
                 boolean Checkbox = checkBox.isChecked();
                 boolean intrested = false;
                 boolean matched = false;
@@ -104,7 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String timer ="";
 
 
-                if(dataCheck(Email, Password, Name, Phno, Checkbox)){
+                if(dataCheck(Email, Password, Name, Phno, Checkbox, rollNo)){
                     auth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -131,6 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             userDetails.put("equipment", equipment);
                                             userDetails.put("sport", sport);
                                             userDetails.put("timer", timer);
+                                            userDetails.put("roll", rollNo);
 
                                             curruser.updateChildren(userDetails);
                                             email.setText("");
@@ -155,9 +158,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private boolean dataCheck(String email, String password, String name, String phno, boolean checkbox) {
+    private boolean dataCheck(String email, String password, String name, String phno, boolean checkbox, String roll) {
 
-        if (email.equals("") || name.equals("") || password.equals("") || phno.equals("")) {
+        if (email.equals("") || name.equals("") || password.equals("") || phno.equals("") || roll.equals("")) {
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
             return false;
         }

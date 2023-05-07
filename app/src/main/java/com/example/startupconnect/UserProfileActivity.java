@@ -16,12 +16,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class UserProfileActivity extends AppCompatActivity {
-    TextView userName, fullName, email, rating, phone;
+    TextView userName, fullName, email, rating, phone, roll;
 
     private FirebaseAuth auth;
     DatabaseReference mDatabase;
 
-    String CurrUser, currUserName, currUserEmail, currUserPhone;
+    String CurrUser, currUserName, currUserEmail, currUserPhone, currUserRoll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class UserProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.user_email);
         rating = findViewById(R.id.rating);
         phone = findViewById(R.id.phone);
+        roll = findViewById(R.id.roll_no);
 
         auth = FirebaseAuth.getInstance();
         CurrUser = auth.getCurrentUser().getUid();
@@ -49,6 +50,8 @@ public class UserProfileActivity extends AppCompatActivity {
                 fullName.setText(currUserName);
                 currUserPhone = snapshot.child("Phno").getValue(String.class);
                 phone.setText(currUserPhone);
+                currUserRoll = snapshot.child("roll").getValue(String.class);
+                roll.setText(currUserRoll);
 //                Toast.makeText(UserProfileActivity.this, currUserPhone, Toast.LENGTH_SHORT).show();
                 currUserEmail = auth.getCurrentUser().getEmail();
                 email.setText(currUserEmail);

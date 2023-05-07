@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:background="@color/blue_200"
         android:padding="20dp">
 
 
@@ -17,7 +18,7 @@
             android:id="@+id/profile_image"
             android:layout_width="175dp"
             android:layout_height="175dp"
-            android:src="@drawable/userpic"
+            android:src="@drawable/boy"
             android:layout_centerVertical="true" />
 
         <TextView

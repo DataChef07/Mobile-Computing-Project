@@ -129,11 +129,26 @@ public class findBuddy extends AppCompatActivity {
                 obj.child(CurrUser).child("intrested").setValue(false);
                 obj.child(CurrUser).child("matched").setValue(true);
 
+                String[] time = {""};
+                obj.child(MatchedUser).child("timer")
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                time[0] = snapshot.getValue(String.class);
+                                Log.d("time", "time[0] ===>  " + time[0]);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                 obj.child(MatchedUser).child("matched").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Boolean matchedval = snapshot.getValue(Boolean.class);
-                        if(matchedval){
+                        if(matchedval && time[0].equals("")){
                             String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new java.util.Date());
                             obj.child(CurrUser).child("timer").setValue(timeStamp);
 

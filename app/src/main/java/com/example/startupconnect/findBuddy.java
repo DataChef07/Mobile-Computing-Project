@@ -105,8 +105,9 @@ public class findBuddy extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Boolean matchedval = snapshot.getValue(Boolean.class);
                         if(matchedval){
-                            String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm").format(new java.util.Date());
+                            String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new java.util.Date());
                             obj.child(CurrUser).child("timer").setValue(timeStamp);
+
 
                         }
                         else {
@@ -173,6 +174,7 @@ public class findBuddy extends AppCompatActivity {
                 for (Map.Entry<String, HashMap> entry : fetchedData.entrySet()){
                     String key = entry.getKey();
                     UserID_list.add(key);
+                    Log.i("TAG", "Key: "+ key);
                     temp = entry.getValue();
                     Log.d("val check", "values ===>   "+ temp.values());
 

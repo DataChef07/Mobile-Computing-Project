@@ -115,6 +115,7 @@ public class ComplaintActivity extends AppCompatActivity {
                 complaintDetails.put("text", ComplaintText);
                 complaintDetails.put("sport", category);
                 complaintDetails.put("type", subcategory);
+                complaintDetails.put("state", "initiated");
                 complaintsReference.push().setValue(complaintDetails);
                 Toast.makeText(ComplaintActivity.this, "Your Complaint has been Registered...", Toast.LENGTH_SHORT).show();
                 Log.i("ComplaintActivity", "Your Complaint has been Registered... Appropriated Action will be taken soon");

@@ -61,7 +61,7 @@
 
         <TextView
             android:id="@+id/full_name"
-            android:text="Vamshi Krishna Vannekala"
+            android:text="Full Name"
             android:textColor="@color/black"
             android:fontFamily="@font/candal"
             android:layout_marginTop="@dimen/_5dp"
@@ -78,7 +78,7 @@
 
         <TextView
             android:id="@+id/user_email"
-            android:text="vamshi22086@iiitd.ac.in"
+            android:text="email"
             android:textColor="@color/black"
             android:fontFamily="@font/candal"
             android:layout_marginTop="5dp"
@@ -95,7 +95,7 @@
 
         <TextView
             android:id="@+id/rating"
-            android:text="51"
+            android:text="0"
             android:layout_marginTop="5dp"
             android:textColor="@color/black"
             android:fontFamily="@font/candal"

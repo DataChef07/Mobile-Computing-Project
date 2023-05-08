@@ -61,7 +61,7 @@
                         android:gravity="center"
                         android:text="Welcome to Sportify"
                         android:fontFamily="@font/abril_fatface"
-                        android:textColor="@color/color_secondary"
+                        android:textColor="@color/black"
                         android:textSize="36sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="50dp"/>

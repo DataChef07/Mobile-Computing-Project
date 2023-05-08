@@ -63,7 +63,7 @@ public class findBuddy extends AppCompatActivity {
         intrested_checkbox = findViewById(R.id.intrested);
         confirm = findViewById(R.id.confirm);
         matched = findViewById(R.id.matched);
-        courts = findViewById(R.id.courts);
+//        courts = findViewById(R.id.courts);
         auth = FirebaseAuth.getInstance();
         search = findViewById(R.id.search);
         msg = findViewById(R.id.msg);
@@ -116,41 +116,41 @@ public class findBuddy extends AppCompatActivity {
 
                     Log.d("matchedUser", "matcheduser ===>  " + MatchedUser);
 
-                    HashMap<String, String> mp = new HashMap<>();
-                    mp.put("Air hockey", "airhockey");
-                    mp.put("Badminton", "badminton");
-                    mp.put("Football", "football");
-                    mp.put("Squash", "squash");
-                    mp.put("Table tennis", "tabletennis");
-                    mp.put("Tennis", "tennis");
-                    mp.put("swimming", "swimming");
-
-                    int people = 0;
-                    for(int i=0; i<Sport_list.size(); i++){
-                        if(Sport_list.get(i).equals(sport) && signedin_list.get(i)){
-                            people++;
-                        }
-                    }
-                    int occupied = people/4;
-                    DatabaseReference obj1 = FirebaseDatabase.getInstance().getReference();
-                    obj1.child("test").child(mp.get(sport)).child("courts").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            court[0] = Integer.parseInt(snapshot.getValue(String.class));
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                    int rem = 0;
-                    if(court[0] - occupied >0){
-                        rem = court[0] - occupied;
-                        Log.d("court", "court:   ===>  " + rem);
-                    }
-                    courts.setText("Courts Available : "+String.valueOf(rem));
+//                    HashMap<String, String> mp = new HashMap<>();
+//                    mp.put("Air hockey", "airhockey");
+//                    mp.put("Badminton", "badminton");
+//                    mp.put("Football", "football");
+//                    mp.put("Squash", "squash");
+//                    mp.put("Table tennis", "tabletennis");
+//                    mp.put("Tennis", "tennis");
+//                    mp.put("swimming", "swimming");
+//
+//                    int people = 0;
+//                    for(int i=0; i<Sport_list.size(); i++){
+//                        if(Sport_list.get(i).equals(sport) && signedin_list.get(i)){
+//                            people++;
+//                        }
+//                    }
+//                    int occupied = people/4;
+//                    DatabaseReference obj1 = FirebaseDatabase.getInstance().getReference();
+//                    obj1.child("test").child(mp.get(sport)).child("courts").addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                            court[0] = Integer.parseInt(snapshot.getValue(String.class));
+//
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//
+//                        }
+//                    });
+//                    int rem = 0;
+//                    if(court[0] - occupied >0){
+//                        rem = court[0] - occupied;
+//                        Log.d("court", "court:   ===>  " + rem);
+//                    }
+//                    courts.setText("Courts Available : "+String.valueOf(rem));
                 }
                 else{
                     mDatabase.child("sport").setValue("");

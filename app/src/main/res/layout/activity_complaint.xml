@@ -84,7 +84,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="15dp"
                 android:gravity="top"
                 android:scrollbars = "vertical">

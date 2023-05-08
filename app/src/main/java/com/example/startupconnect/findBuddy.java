@@ -36,6 +36,7 @@ public class findBuddy extends AppCompatActivity {
     ArrayList<String> UserID_list= new ArrayList<>();
     ArrayList<String> name_list= new ArrayList<>();
     ArrayList<Boolean> intrested_list= new ArrayList<>();
+    ArrayList<Boolean> signedin_list= new ArrayList<>();
     ArrayList<Boolean> matched_list= new ArrayList<>();
     ArrayList<String> Rating_list= new ArrayList<>();
     ArrayList<String> Sport_list= new ArrayList<>();
@@ -44,6 +45,7 @@ public class findBuddy extends AppCompatActivity {
     String MatchedUser = "", matchedName;
     String CurrUser;
     String sport="";
+    int[] court = {0};
 
     Handler handler = new Handler();
     Runnable runnable;
@@ -112,6 +114,41 @@ public class findBuddy extends AppCompatActivity {
                     }
 
                     Log.d("matchedUser", "matcheduser ===>  " + MatchedUser);
+
+                    HashMap<String, String> mp = new HashMap<>();
+                    mp.put("Air hockey", "airhockey");
+                    mp.put("Badminton", "badminton");
+                    mp.put("Football", "football");
+                    mp.put("Squash", "squash");
+                    mp.put("Table tennis", "tabletennis");
+                    mp.put("Tennis", "tennis");
+                    mp.put("swimming", "swimming");
+
+                    int people = 0;
+                    for(int i=0; i<Sport_list.size(); i++){
+                        if(Sport_list.get(i).equals(sport) && signedin_list.get(i)){
+                            people++;
+                        }
+                    }
+                    int occupied = people/4;
+                    DatabaseReference obj1 = FirebaseDatabase.getInstance().getReference();
+                    obj1.child("test").child(mp.get(sport)).child("courts").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            court[0] = Integer.parseInt(snapshot.getValue(String.class));
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    int rem = 0;
+                    if(court[0] - occupied >0){
+                        rem = court[0] - occupied;
+                        Log.d("court", "court:   ===>  " + rem);
+                    }
                 }
                 else{
                     mDatabase.child("sport").setValue("");
@@ -230,6 +267,7 @@ public class findBuddy extends AppCompatActivity {
                 name_list.clear();
                 Sport_list.clear();
                 Rating_list.clear();
+                signedin_list.clear();
 
                 for (Map.Entry<String, HashMap> entry : fetchedData.entrySet()){
                     String key = entry.getKey();
@@ -252,6 +290,7 @@ public class findBuddy extends AppCompatActivity {
                     //i[8] == phone
                     //i[9] == profilePicUrl
                     //i[10] == sport
+                    signedin_list.add((Boolean) i[2]);
                     intrested_list.add((Boolean) i[0]);
                     Sport_list.add((String) i[10]);
                     matched_list.add((Boolean) i[7]);
@@ -268,6 +307,7 @@ public class findBuddy extends AppCompatActivity {
                 Log.d("findBuddy", "matched: ===> " + matched_list);
                 Log.d("findBuddy", "Rating: ===> " + Rating_list);
                 Log.d("findBuddy", "Sport: ===> " + Sport_list);
+                Log.d("findBuddy", "signin: ===> " + signedin_list);
 
             }
 

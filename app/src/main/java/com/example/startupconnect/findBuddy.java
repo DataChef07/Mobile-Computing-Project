@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class findBuddy extends AppCompatActivity {
-    TextView available_members, matched, msg;
+    TextView available_members, matched, msg, courts;
     Button confirm, search;
     CheckBox intrested_checkbox;
     String name;
@@ -63,6 +63,7 @@ public class findBuddy extends AppCompatActivity {
         intrested_checkbox = findViewById(R.id.intrested);
         confirm = findViewById(R.id.confirm);
         matched = findViewById(R.id.matched);
+        courts = findViewById(R.id.courts);
         auth = FirebaseAuth.getInstance();
         search = findViewById(R.id.search);
         msg = findViewById(R.id.msg);
@@ -149,6 +150,7 @@ public class findBuddy extends AppCompatActivity {
                         rem = court[0] - occupied;
                         Log.d("court", "court:   ===>  " + rem);
                     }
+                    courts.setText("Courts Available : "+String.valueOf(rem));
                 }
                 else{
                     mDatabase.child("sport").setValue("");
